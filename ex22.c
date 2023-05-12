@@ -144,6 +144,9 @@ int main(int argc, char* argv[]) {
                     break;
                 }
             }
+                            char namr[100] = "";
+                strcat(namr, entry->d_name);
+                strcat(namr, ".txt");
             //printf("cfile is %s\n", cfile);
             if (strcmp(cfile, "") == 0) {
                 //threre is no file grade is 0
@@ -196,7 +199,8 @@ int main(int argc, char* argv[]) {
                             char text[20] = "compare with";
                             strcat(text, entry->d_name);
                             //write(results, text, sizeof(text));
-                            int fd = open("tempOutput.txt", O_RDWR | O_CREAT | O_TRUNC | O_EXCL, 0644);
+                            //int fd = open("tempOutput.txt", O_RDWR | O_CREAT | O_TRUNC, 0644);
+                            int fd = open(namr, O_RDWR | O_CREAT | O_TRUNC, 0644);
                             char cose[1000];
                             strcat(cose, outfile);
                             int dfIn = open(second_line, O_RDONLY);
@@ -281,7 +285,7 @@ int main(int argc, char* argv[]) {
                                 }
                                 if (pid3 == 0) {
                                     //son - run comp
-                                    execl("./comp.out", "./comp.out", third_line, "tempOutput.txt");
+                                    execl("./comp.out", "./comp.out", third_line, namr);
                                     //perror("Error in: exec");
                                 } else {
                                     //parnent
