@@ -15,8 +15,20 @@
 #define BUFFER_SIZE 450
 #define LINE_SIZE 150
 
+bool isNotInArray(int* array, int size, int target) {
+    for (int i = 0; i < size; i++) {
+        if (array[i] == target) {
+            return false;  // Integer found in the array
+        }
+    }
+    return true;  // Integer not found in the array
+}
+
 int main(int argc, char* argv[]) {
     int erorFD = open("errors.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+    int timers_process[100];
+    int counter_size =0;
+    timers_process[counter_size++] = 0;
     dup2(erorFD, 2);
     if (argc == 1) {
         printf("not enough arguments \n");
@@ -219,8 +231,11 @@ int main(int argc, char* argv[]) {
                     exit(10);
                     } else {
                         //parent parent here wrote outt
-                        int status;
-                        int returned = wait(&status);
+                        int status, returned;
+                        do {
+                            returned = wait(&status);
+                        } while (isNotInArray(timers_process, sizeof(timers_process)/sizeof(1), returned));
+                        timers_process[counter_size++] = pid2;
                         printf("pid on timer is: %d, pid returned is: %d\n", pid2, returned);
                         if (returned == -1) {
                             perror("Error in: wait");
@@ -239,9 +254,9 @@ int main(int argc, char* argv[]) {
                                 }
 
                         } else {
-                            if(kill(pid2, SIGTERM) < 0) {
-                                printf("kill not good");
-                            }
+                            // if(kill(pid2, SIGTERM) < 0) {
+                            //     printf("kill not good");
+                            // }
                             int exit_status = WEXITSTATUS(status);
                             if (exit_status == 50){
                                 char to_print[LINE_SIZE];
