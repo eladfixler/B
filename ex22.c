@@ -152,7 +152,7 @@ int main(int argc, char* argv[]) {
                 }
             }
             if (strcmp(cfile, "") == 0) {
-                printf("cant get here/n")
+                printf("cant get here/n");
                 //threre is no file grade is 0
                 char to_print[LINE_SIZE];
                 strcpy(to_print, entry->d_name);
