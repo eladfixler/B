@@ -127,6 +127,7 @@ int main(int argc, char* argv[]) {
             }
             struct dirent *ent;
             char cfile[LINE_SIZE] = "";
+            strcpy(cfile, "");
             while ((ent = readdir(subdir)) != NULL) {
                 strcpy(cfile, "");
                 if (strcmp(ent->d_name + strlen(ent->d_name) - 2, ".c") == 0) {
