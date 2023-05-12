@@ -144,9 +144,6 @@ int main(int argc, char* argv[]) {
                     break;
                 }
             }
-                                        char file[1000];
-                            strcat(file, cfile);
-                            strcat(file, "tempOutput.txt");
             //printf("cfile is %s\n", cfile);
             if (strcmp(cfile, "") == 0) {
                 //threre is no file grade is 0
@@ -196,8 +193,8 @@ int main(int argc, char* argv[]) {
                             strcat(withPoint, outfile);
                             //printf(outfile);
                             const char* path = withPoint;
-
-                            int fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+                            printf("compare with %s", ent->d_name);
+                            int fd = open("tempOutput.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
                             char cose[1000];
                             strcat(cose, outfile);
                             int dfIn = open(second_line, O_RDONLY);
@@ -282,7 +279,7 @@ int main(int argc, char* argv[]) {
                                 }
                                 if (pid3 == 0) {
                                     //son - run comp
-                                    execl("./comp.out", "./comp.out", third_line, file);
+                                    execl("./comp.out", "./comp.out", third_line, "tempOutput.txt");
                                     //perror("Error in: exec");
                                 } else {
                                     //parnent
