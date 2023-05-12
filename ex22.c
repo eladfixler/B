@@ -195,7 +195,7 @@ int main(int argc, char* argv[]) {
                             const char* path = withPoint;
                             char text[20] = "compare with";
                             strcat(text, entry->d_name);
-                            write(results, text, sizeof(text));
+                            //write(results, text, sizeof(text));
                             int fd = open("tempOutput.txt", O_RDWR | O_CREAT | O_TRUNC, 0644);
                             char cose[1000];
                             strcat(cose, outfile);
@@ -298,7 +298,7 @@ int main(int argc, char* argv[]) {
                                         continue;
                                     }
                                     
-                                    //printf(buffer);
+                                    printf(buffer);
                                     int value_got =WEXITSTATUS(status);
                                     char to_print[LINE_SIZE];
                                     strcpy(to_print, entry->d_name);
