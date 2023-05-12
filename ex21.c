@@ -33,12 +33,14 @@ int main(int argc, char* argv[]) {
 
     fd1 = open(argv[1], O_RDONLY);
     if (fd1 == -1) {
+        printf("prob");
         perror("Error in open");
         return -1;
     }
 
     fd2 = open(argv[2], O_RDONLY);
     if (fd2 == -1) {
+        printf("prob");
         perror("Error in open");
         close(fd1);
         return -1;
@@ -70,7 +72,7 @@ int main(int argc, char* argv[]) {
             }
             close(fd1);
             close(fd2);
-            //printf("they diffrent and i know it in the while");
+            printf("they diffrent and i know it in the while");
             return 2;
         }
     }
@@ -78,12 +80,12 @@ int main(int argc, char* argv[]) {
         if (same) {
             close(fd1);
             close(fd2);
-            //printf("they same because they end in the same time and same was up");
+            printf("they same because they end in the same time and same was up");
             return 1;
         } else {
             close(fd1);
             close(fd2);
-            //printf("they similar because they end at the same time and same was down");
+            printf("they similar because they end at the same time and same was down");
             return 3;
         }
     }
@@ -92,7 +94,7 @@ int main(int argc, char* argv[]) {
             if (!isspace(file2)) {
                 close(fd1);
                 close(fd2);
-                //printf("they diffrent because one end while the other still had not space in the end");
+                printf("they diffrent because one end while the other still had not space in the end");
                 return 2;
             } else {
                 same = false;
@@ -101,7 +103,7 @@ int main(int argc, char* argv[]) {
         }
         close(fd1);
         close(fd2);
-        //printf("the similar because un the end of the one there are only spaces");
+        printf("the similar because un the end of the one there are only spaces");
         return 3;
     }
 
@@ -110,7 +112,7 @@ int main(int argc, char* argv[]) {
             if (!isspace(file1)) {
                 close(fd1);
                 close(fd2);
-                //printf("they diffrent because one end while the other still had not space in the end");
+                printf("they diffrent because one end while the other still had not space in the end");
                 return 2;
             } else {
                 same = false;
@@ -119,7 +121,7 @@ int main(int argc, char* argv[]) {
         }
         close(fd1);
         close(fd2);
-        //printf("the similar because un the end of the one there are only spaces");
+        printf("the similar because un the end of the one there are only spaces");
         return 3;
     }
     close(fd1);
