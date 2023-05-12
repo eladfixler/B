@@ -193,7 +193,10 @@ int main(int argc, char* argv[]) {
                             strcat(withPoint, outfile);
                             //printf(outfile);
                             const char* path = withPoint;
-                            int fd = open("tempOutput.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+                            char file[200];
+                            strcat(file, cfile);
+                            strcat(file, "tempOutput.txt");
+                            int fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
                             char cose[1000];
                             strcat(cose, outfile);
                             int dfIn = open(second_line, O_RDONLY);
