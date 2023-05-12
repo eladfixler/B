@@ -9,6 +9,7 @@
 #include <dirent.h>
 #include <string.h>
 #include<time.h>
+#include<signal.h>
 
 
 #define BUFFER_SIZE 450
@@ -238,7 +239,7 @@ int main(int argc, char* argv[]) {
                                 }
 
                         } else {
-
+                            kill(pid2, SIGKILL);
                             int exit_status = WEXITSTATUS(status);
                             if (exit_status == 50){
                                 char to_print[LINE_SIZE];
