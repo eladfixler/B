@@ -17,6 +17,10 @@ char read_one_char(int fd) {
 
 }
 int main(int argc, char* argv[]) {
+            printf("input is: \n");
+        for (int i = 0; i < argc; i++) {
+            printf("%s\n", argv[i]);
+        }
     if (argc < 3) {
         printf("input is: \n");
         for (int i = 0; i < argc; i++) {
