@@ -193,7 +193,9 @@ int main(int argc, char* argv[]) {
                             strcat(withPoint, outfile);
                             //printf(outfile);
                             const char* path = withPoint;
-                            printf("compare with %s", ent->d_name);
+                            char text[1000] = "compare with";
+                            strcat(text, ent->d_name);
+                            write(results, text, sizeof(text));
                             int fd = open("tempOutput.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
                             char cose[1000];
                             strcat(cose, outfile);
