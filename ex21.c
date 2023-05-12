@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
         return -1;
     }
 
-    fd2 = open(argv[2], O_RDONLY | O_CREAT, 0644);
+    fd2 = open(argv[2], O_RDONLY);
     if (fd2 == -1) {
         //printf("prob2");
         perror("Error in open");
