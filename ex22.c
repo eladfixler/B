@@ -215,6 +215,7 @@ int main(int argc, char* argv[]) {
                     while ((current_time - start_time) < 5) {
                         current_time = time(NULL);
                     }
+                    printf("5 scinds ended\n");
                     exit(1);
                     } else {
                         //parent parent here wrote outt
@@ -236,6 +237,7 @@ int main(int argc, char* argv[]) {
                                 }
 
                         } else {
+                            
                             int exit_status = WEXITSTATUS(status);
                             if (exit_status == 50){
                                 char to_print[LINE_SIZE];
