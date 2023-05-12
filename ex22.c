@@ -236,7 +236,7 @@ int main(int argc, char* argv[]) {
                             returned = wait(&status);
                         } while (!isNotInArray(timers_process, sizeof(timers_process)/sizeof(1), returned));
                         timers_process[counter_size++] = pid2;
-                        printf("pid on timer is: %d, pid returned is: %d\n", pid2, returned);
+                        //printf("pid on timer is: %d, pid returned is: %d\n", pid2, returned);
                         if (returned == -1) {
                             perror("Error in: wait");
                             continue;
