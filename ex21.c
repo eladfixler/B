@@ -41,7 +41,7 @@ int main(int argc, char* argv[]) {
 
     fd2 = open(argv[2], O_RDONLY);
     if (fd2 == -1) {
-        printf("prob2");
+        //printf("prob2");
         perror("Error in open");
         close(fd1);
         return -1;
