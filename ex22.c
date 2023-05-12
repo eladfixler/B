@@ -220,7 +220,7 @@ int main(int argc, char* argv[]) {
                         //parent parent here wrote outt
                         int status;
                         int returned = wait(&status);
-                        printf("pid on timer is: %d, pid returned is: %d/n", pid2, returned);
+                        printf("pid on timer is: %d, pid returned is: %d\n", pid2, returned);
                         if (returned == -1) {
                             perror("Error in: wait");
                             continue;
