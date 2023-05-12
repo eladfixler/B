@@ -196,7 +196,7 @@ int main(int argc, char* argv[]) {
                             char text[20] = "compare with";
                             strcat(text, entry->d_name);
                             write(results, text, sizeof(text));
-                            int fd = open("tempOutput.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+                            int fd = open("tempOutput.txt", O_RDWR | O_CREAT | O_TRUNC, 0644);
                             char cose[1000];
                             strcat(cose, outfile);
                             int dfIn = open(second_line, O_RDONLY);
