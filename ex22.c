@@ -215,8 +215,7 @@ int main(int argc, char* argv[]) {
                     while ((current_time - start_time) < 5) {
                         current_time = time(NULL);
                     }
-                    printf("5 scinds ended\n");
-                    exit(1);
+                    exit(10);
                     } else {
                         //parent parent here wrote outt
                         int status;
@@ -227,6 +226,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (returned == pid2) {
                             //5 seconds ended
+                            printf("5 seconds ended");
                             char to_print[LINE_SIZE];
                                 strcpy(to_print, entry->d_name);
                                 strcat(to_print, ",20,TIMEOUT\n");
@@ -237,7 +237,7 @@ int main(int argc, char* argv[]) {
                                 }
 
                         } else {
-                            
+
                             int exit_status = WEXITSTATUS(status);
                             if (exit_status == 50){
                                 char to_print[LINE_SIZE];
