@@ -17,8 +17,12 @@ char read_one_char(int fd) {
 
 }
 int main(int argc, char* argv[]) {
-    if (argc != 3) {
-        printf("invalid input");
+    if (argc < 3) {
+        printf("input is: \n");
+        for (int i = 0; i < argc; i++) {
+            printf("%s\n", argv[i]);
+        }
+        printf("invalid input\n");
         return -1;
     }
     int fd1, fd2;
