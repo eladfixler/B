@@ -33,14 +33,14 @@ int main(int argc, char* argv[]) {
 
     fd1 = open(argv[1], O_RDONLY);
     if (fd1 == -1) {
-        printf("prob");
+        printf("prob1");
         perror("Error in open");
         return -1;
     }
 
     fd2 = open(argv[2], O_RDONLY);
     if (fd2 == -1) {
-        printf("prob");
+        printf("prob2");
         perror("Error in open");
         close(fd1);
         return -1;
