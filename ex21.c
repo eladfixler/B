@@ -28,6 +28,7 @@ int main(int argc, char* argv[]) {
             printf("%s\n", argv[i]);
         }
         printf("invalid input\n");
+        
         return -1;
     }
     int fd1, fd2;
