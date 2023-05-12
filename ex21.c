@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
     file2 = read_one_char(fd2);
     bool same = true, similar = false;
     while (file1 != NULL || file2 != NULL) {
-        //printf("compare between %c and %c \n",file1, file2);
+        printf("compare between %c and %c \n",file1, file2);
         if (file1 == file2) {
             file1 = read_one_char(fd1);
             file2 = read_one_char(fd2);
