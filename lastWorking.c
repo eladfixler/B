@@ -167,7 +167,7 @@ int main(int argc, char* argv[]) {
                     pid_t pid2 = fork();
                     if (pid2 == -1 ){
                         perror("error in: fork");
-                        return -1;
+                        continue;
                     }
                     if (pid2 == 0) {
                         //child child - here compile
@@ -207,13 +207,13 @@ int main(int argc, char* argv[]) {
                             // strcat(cose ,second_line);
                             //system(cose);
                             //printf(withPoint);
-                            sleep(1);
+                            //sleep(1);
                             execlp("./a.out", "./a.out", NULL);
                             //execlp(outfile, NULL, path);
                             //here have to work
                             //printf("\nnot worked\n");
                             perror("Error in: exec");
-                            exit(2);
+                            exit(-1);
                         
                         } else {
                             //cant coplied
@@ -228,7 +228,7 @@ int main(int argc, char* argv[]) {
                     pid_t pid2 = fork();
                     if (pid2 == -1) {
                         perror("error in: fork");
-                        return -1;
+                        continue;
                     }
                     if (pid2 == 0) {
                         //parent child count time
@@ -245,7 +245,7 @@ int main(int argc, char* argv[]) {
                         int returned = wait(&status);
                         if (returned == -1) {
                             perror("Error in: wait");
-                            return -1;
+                            continue;
                         }
                         if (returned == pid2) {
                             //5 seconds ended
@@ -274,26 +274,27 @@ int main(int argc, char* argv[]) {
                                 pid_t pid3 = fork();
                                 if (pid3 < 0) {
                                     perror("Error in: fork");
-                                    exit(-1);
+                                    continue;
                                 }
                                 if (pid3 == 0) {
                                     //son - run comp
                                     execl("./comp.out", "./comp.out", third_line, "tempOutput.txt");
-                                    //perror("Error in: exec");
+                                    perror("Error in: exec");
+                                    return(-1);
                                 } else {
                                     //parnent
                                     int status;
                                     int a = wait(&status);
                                     if (a < 0) {
                                         perror("Error in: wait");
-                                        exit(-1);
-                                    }
-                                    int fd3 = open("tempOutput.txt", O_RDONLY);
-                                    char buffer[1000];
-                                    if(read(fd3, buffer, sizeof(buffer)) < 0) {
-                                        perror("Error in: read");
                                         continue;
                                     }
+                                    // int fd3 = open("tempOutput.txt", O_RDONLY);
+                                    // char buffer[1000];
+                                    // if(read(fd3, buffer, sizeof(buffer)) < 0) {
+                                    //     perror("Error in: read");
+                                    //     continue;
+                                    // }
                                     
                                     //printf(buffer);
                                     int value_got =WEXITSTATUS(status);
@@ -303,8 +304,10 @@ int main(int argc, char* argv[]) {
                                         //same
                                         strcat(to_print, ",100,EXCELLENT\n");
                                     } else if (value_got == 2) {
+                                        //diff
                                         strcat(to_print, ",50,WRONG\n");
                                     } else if (value_got == 3) {
+                                        //similar
                                         strcat(to_print, ",75,SIMILAR\n");
                                     }
                                         ssize_t bits = write(results, to_print, strlen(to_print));
