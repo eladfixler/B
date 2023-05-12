@@ -152,6 +152,7 @@ int main(int argc, char* argv[]) {
                 }
             }
             if (strcmp(cfile, "") == 0) {
+                printf("cant get here/n")
                 //threre is no file grade is 0
                 char to_print[LINE_SIZE];
                 strcpy(to_print, entry->d_name);
@@ -243,7 +244,7 @@ int main(int argc, char* argv[]) {
                         }
                         if (returned == pid2) {
                             //5 seconds ended
-                            printf("5 seconds ended");
+                            //printf("5 seconds ended");
                             char to_print[LINE_SIZE];
                                 strcpy(to_print, entry->d_name);
                                 strcat(to_print, ",20,TIMEOUT\n");
