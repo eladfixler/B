@@ -193,7 +193,7 @@ int main(int argc, char* argv[]) {
                             strcat(withPoint, outfile);
                             //printf(outfile);
                             const char* path = withPoint;
-                            char file[200];
+                            char file[1000];
                             strcat(file, cfile);
                             strcat(file, "tempOutput.txt");
                             int fd = open(file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
