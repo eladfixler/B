@@ -67,10 +67,6 @@ int main(int argc, char* argv[]) {
         third_line[place_counter] = '\0';
 
     }
-    // printf("Line 1: %s\n", first_line);
-    // printf("Line 2: %s\n", second_line);
-    // printf("Line 3: %s\n", third_line);
-
     DIR* dir;
     dir = opendir(first_line);
     if (dir == NULL) {
@@ -100,7 +96,6 @@ int main(int argc, char* argv[]) {
             continue;
         }
         if (entry->d_type == DT_DIR) {
-            //printf("Found directory: %s\n", entry->d_name);
             //start the compile here
             char dirertory[LINE_SIZE];
             if(getcwd(dirertory, sizeof(dirertory)) == NULL) {
@@ -111,7 +106,6 @@ int main(int argc, char* argv[]) {
             strcat(dirertory, first_line);
             strcat(dirertory, "/");
             strcat(dirertory, entry->d_name);
-            //printf("full pass is %s\n", dirertory);
             DIR* subdir;
             subdir = opendir(dirertory);
             if (subdir == NULL) {
@@ -144,7 +138,6 @@ int main(int argc, char* argv[]) {
                     break;
                 }
             }
-            //printf("cfile is %s\n", cfile);
             if (strcmp(cfile, "") == 0) {
                 //threre is no file grade is 0
                 char to_print[LINE_SIZE];
@@ -171,7 +164,6 @@ int main(int argc, char* argv[]) {
                     }
                     if (pid2 == 0) {
                         //child child - here compile
-                        //chdir(dirertory);
                         execlp("gcc", "gcc","-w", bounded_path, NULL);
                         perror("Error in: execlp");
                         _exit -1;
@@ -183,15 +175,10 @@ int main(int argc, char* argv[]) {
                             return -1;
                         }
                         if (WIFEXITED(status) && WEXITSTATUS(status) == 0) {
-                            //printf(dirertory);
                             //now run
-                            //printf("File %s can be compiled.\n", cfile);
                             char outfile[LINE_SIZE];
                             char withPoint[LINE_SIZE] = ".";
-                            //strcat(outfile, dirertory);
-                            //strcat(outfile, "/a.out");
                             strcat(withPoint, outfile);
-                            //printf(outfile);
                             const char* path = withPoint;
                             int fd = open("tempOutput.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
                             char cose[1000];
@@ -201,17 +188,7 @@ int main(int argc, char* argv[]) {
                             dup2(fd, 1);
                             close(fd);
                             close(dfIn);
-                            //printf("hi");
-                            //chdir(dirertory);
-                            // strcat(cose, ">tempOutput.txt <");
-                            // strcat(cose ,second_line);
-                            //system(cose);
-                            //printf(withPoint);
-                            //sleep(1);
                             execlp("./a.out", "./a.out", NULL);
-                            //execlp(outfile, NULL, path);
-                            //here have to work
-                            //printf("\nnot worked\n");
                             perror("Error in: exec");
                             exit(-1);
                         
@@ -289,14 +266,6 @@ int main(int argc, char* argv[]) {
                                         perror("Error in: wait");
                                         continue;
                                     }
-                                    // int fd3 = open("tempOutput.txt", O_RDONLY);
-                                    // char buffer[1000];
-                                    // if(read(fd3, buffer, sizeof(buffer)) < 0) {
-                                    //     perror("Error in: read");
-                                    //     continue;
-                                    // }
-                                    
-                                    //printf(buffer);
                                     int value_got =WEXITSTATUS(status);
                                     char to_print[LINE_SIZE];
                                     strcpy(to_print, entry->d_name);
@@ -317,8 +286,6 @@ int main(int argc, char* argv[]) {
                                         }
                                 }
                                 remove("tempOutput.txt");
-                                //printf("returned from exec\n");
-                                //sleep(2);
                             } 
                         }
                     }
@@ -330,5 +297,3 @@ int main(int argc, char* argv[]) {
     close(results);
     closedir(dir);
 }
-
-
