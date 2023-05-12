@@ -17,6 +17,7 @@ char read_one_char(int fd) {
 
 }
 int main(int argc, char* argv[]) {
+    system("ls");
             printf("input is: \n");
         for (int i = 0; i < argc; i++) {
             printf("%s\n", argv[i]);
